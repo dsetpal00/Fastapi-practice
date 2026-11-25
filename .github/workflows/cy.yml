@@ -1,0 +1,42 @@
+name: FASTAPI CI Pipeline
+
+#when will the workflow trigger/ when should the pipeline run
+on: 
+  push:
+#all the branches jisper workflow run on pushing code...
+    # branches: ["main"] or
+    branches:
+      - "main"
+      - "another_branch"
+
+  pull_requests:
+    branches:
+      - "main"
+
+#what work should github perform?
+jobs:
+  test:
+
+  #Github provides a virtual machine
+  runs-on: ubuntu-latest
+
+  steps:
+    -name: Checkout code
+     uses: actions/checkout@v4
+
+    -name: Set up python
+     uses: actions/setup-python@v5
+     with:
+      python-version: '3.11'
+
+    -name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    -name: Run tests
+     run: pytest -v
+
+
+
+  
