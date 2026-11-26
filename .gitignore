@@ -8,6 +8,5 @@ __pycache__/
 .env
 .pytest_cache/
 .vscode/
-.log
-.zip
-.app
+*.log
+*.zip
