@@ -18,6 +18,25 @@ jobs:
   test:
   #Github provides a virtual machine
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+
+    env:
+      database_hostname: localhost
+      database_port: 5432
+      database_username: test_user
+      database_password: test_password
+      database_name: test_db
+      secret_key: test_secret_key_for_ci_only
+
 
     steps:
       - name: Checkout code
